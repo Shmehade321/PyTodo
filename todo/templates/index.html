@@ -1,0 +1,45 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="row">
+  <div class="col">
+    <h2>Add Item</h2>
+    <form action="add_todo" method="post">
+      {% csrf_token %}
+      <div class="form-row align-items-center">
+        <div class="col-sm-10 my-1">
+          <label class="sr-only" for="inlineFormInputName">Item</label>
+          <input
+            type="text"
+            class="form-control"
+            id="content"
+            name="content"
+            placeholder="Add todo..."
+          />
+        </div>
+        <div class="col-auto my-2">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <ul class="list-group">
+      {% for todo in todos %}
+      <li class="list-group-item">
+        {{ todo.text }}
+        <div class="float-right">
+          <form action="delete_todo/{{ todo.id }}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+          </form>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+{% endblock %}

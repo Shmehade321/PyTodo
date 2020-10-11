@@ -1,0 +1,5 @@
+.vscode
+todo/__pycache__
+todo/migrations/__pycache__
+todoapp/__pycache__
+
